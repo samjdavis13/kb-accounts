@@ -1,0 +1,52 @@
+
+
+div.container {
+	font-family: helvetica, arial, sans-serif;
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.slab {
+	position: absolute;
+	top:0; left:0; bottom:0; right:0;
+
+	overflow: hidden;
+	padding: 10px 20px;
+	margin: auto;
+	width: 250px;
+	height: 330px;
+	background: #eee;
+	border: 1px solid #ddd;
+
+	/* Border */
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+	/* Shadow */
+	box-shadow: 0 4px 0 -3px rgba(200,200,200,.5);
+}
+
+div.small {
+	height: 200px;
+}
+
+form input {
+	position: relative;
+	height: 20px;
+	width: 80%;
+}
+
+form input[type=submit] {
+	width: 80px;
+
+}
+
+
+
+@media all and (max-width: 820px) {
+	div.container {
+		width: 95%;
+	}
+}
