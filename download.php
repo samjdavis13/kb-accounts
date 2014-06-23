@@ -13,6 +13,15 @@ function forceDownLoad($filename) {
 	exit(0); 
 } 
 
+//Start session
+session_start();
+ 
+//Check whether the session variable SESS_MEMBER_ID is present or not
+if(!isset($_SESSION['sess_user']) || (trim($_SESSION['sess_user']) == '')) {
+	header("location: start.php");
+	exit();
+}
+
 $filename = $_GET['filename'];
 $safesearch = false;
 

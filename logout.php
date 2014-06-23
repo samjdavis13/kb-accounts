@@ -1,11 +1,7 @@
 <?php
-//Start session
 session_start();
- 
-//Check whether the session variable SESS_MEMBER_ID is present or not
-if(!isset($_SESSION['sess_user']) || (trim($_SESSION['sess_user']) == '')) {
-	header("location: start.php");
-	exit();
+if (isset($_SESSION['sess_user'])) {
+	unset($_SESSION['sess_user']);
 }
 ?>
 
@@ -37,24 +33,27 @@ if(!isset($_SESSION['sess_user']) || (trim($_SESSION['sess_user']) == '')) {
 			else {
 				return true;
 			}
-
+		}
+		window.onload = function () {
+			var seconds = document.getElementById('seconds');
+			var secLeft = 3;
+			seconds.firstChild.nodeValue = secLeft;
+			var t = setInterval(countdown, 1000);
+			function countdown() {
+				secLeft--;
+				seconds.firstChild.nodeValue = secLeft;
+				if (secLeft <= 0) {
+					window.location.href = "index.php";
+				}				
+			}
 		}
 	</script>
 </head>
 <body>
 	<div class="container">
-		<div class="slab">
-			<h1>Kirby Account Creator</h1>
-			<form name='form' action='create.php' onsubmit="return(validateForm())" method='post'>
-				Username: <br><input type='name' name='name' id='user'><br>
-				<br>Password: <br><input type='password' name='password' id='password'><br>
-				<br>Password Again: <br><input type='password' name='password2' id='password2'><br><br>
-				<input type='submit'>
-			</form>
-			<br>	
-			<form name='logout-form' action='logout.php' method="post">
-				<input type='submit' id='login' value='Logout'>
-			</form>
+		<div class="slab extrasmall">
+			<h1>Succesfully Logged Out</h1>		
+			<p>Returning home in <span id='seconds'>*</span> seconds</p>
 		</div>
 	</div>
 </body>
