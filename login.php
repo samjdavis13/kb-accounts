@@ -7,17 +7,18 @@ function createSalt()
     $text = md5(uniqid(rand(), true));
     return substr($text, 0, 3);
 }
-
-$MASTER_PASS = '9981b28abf766d92c3761fe28a1e3f7732310b45e75f5b349b5082e8c78f0676';
+$USER = 'maccadmin';
+$MASTER_PASS = 'f923cd7cd42afedfa8eeee78e5344da4dbb69c881696e705ee0aa86ca06202ae';
 $SALT = createSalt();
-$hashed_salted_pass = hash('sha256',$MASTER_PASS . $SALT);
+$HASHED_MASTER_PASS = hash('sha256',$MASTER_PASS . $SALT);
 $passcode = hash('sha256',$_POST['passcode']);
+$username = $_POST['username'];
 
-if ( hash('sha256',$passcode.$SALT) != $hashed_salted_pass ) { // INCORRECT PASSWORD
+if ( $username != $USER || hash('sha256',$passcode.$SALT) != $HASHED_MASTER_PASS ) { // INCORRECT USER OR PASSWORD
 	header('Location: start.php?error=passcode');
-} else { // Redirect to index.php
+} else { // Correct U&P — Redirect to index.php
 	session_regenerate_id();
-	$_SESSION['sess_user'] = 'Admin';
+	$_SESSION['sess_user'] = $username;
 	session_write_close();
 	header('Location: index.php');
 }
