@@ -28,6 +28,10 @@ div.slab {
 	box-shadow: 0 4px 0 -3px rgba(200,200,200,.5);
 }
 
+div.medium {
+	height: 270px;
+}
+
 div.small {
 	height: 210px;
 }
