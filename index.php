@@ -45,7 +45,12 @@ if(!isset($_SESSION['sess_user']) || (trim($_SESSION['sess_user']) == '')) {
 	<div class="container">
 		<div class="slab">
 			<h1>Kirby Account Creator</h1>
-			<form name='form' action='create.php' onsubmit="return(validateForm())" method='post'>
+			<?php if(isset($_GET['password']) && $_GET['password'] === 'reset') : ?>
+				<p class='error'>Enter old username with a new password to reset.</p>
+				<form name='form' action='create.php?password=changed' onsubmit="return(validateForm())" method='post'>
+			<?php else : ?>
+				<form name='form' action='create.php' onsubmit="return(validateForm())" method='post'>
+			<?php endif ?>
 				Username: <br><input type='name' name='name' id='user'><br>
 				<br>Password: <br><input type='password' name='password' id='password'><br>
 				<br>Password Again: <br><input type='password' name='password2' id='password2'><br><br>
@@ -54,6 +59,10 @@ if(!isset($_SESSION['sess_user']) || (trim($_SESSION['sess_user']) == '')) {
 			<br>	
 			<form name='logout-form' action='logout.php' method="post">
 				<input type='submit' id='login' value='Logout'>
+				<?php if( !isset($_GET['password']) && $_GET['password'] !== 'reset') : ?>
+					<br><br><a href="?password=reset"><span>Forgotten Password?</span></a>
+				<?php endif ?>
+				
 			</form>
 		</div>
 	</div>
