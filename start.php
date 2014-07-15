@@ -34,7 +34,7 @@
 			<?php if(isset($_GET['error']) && $_GET['error'] === 'passcode') : ?>
 				<p class='error'>Incorrect username or password</p>
 			<?php endif ?>
-			<h1>Login</h1>
+			<h1>Admin Login</h1>
 			<form name='form' action='login.php' onsubmit="return(validateForm())" method='post'>
 				Username:<br>
 				<input type='username' name='username' id='username'><br><br>
