@@ -59,7 +59,7 @@ if(!isset($_SESSION['sess_user']) || (trim($_SESSION['sess_user']) == '')) {
 			<br>	
 			<form name='logout-form' action='logout.php' method="post">
 				<input type='submit' id='login' value='Logout'>
-				<?php if( !isset($_GET['password']) && $_GET['password'] !== 'reset') : ?>
+				<?php if( !isset($_GET['password']) ) : ?>
 					<br><br><a href="?password=reset"><span>Forgotten Password?</span></a>
 				<?php endif ?>
 				
